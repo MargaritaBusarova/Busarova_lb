@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Desktop.utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,12 +25,53 @@ namespace Desktop
             InitializeComponent();
         }
 
+        // Кнопка "Назад" 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             this.Close();
         }
+
+        // Кнопка "Зарегистрироваться" 
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            string name = textBox.Text;
+            string email = textBox1.Text;
+            string password = textBox2.Text;
+            string password2 = textBox3.Text;
+
+            // Проверяем введенные данные
+            if (!name.IsValidName())
+            {
+                MessageBox.Show("Имя должно содержать не менее 3 символов!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            if (!email.IsValidEmail())
+            {
+                MessageBox.Show("Неверный формат почты! Почта должна быть в формате *@*.*", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            if (!password.IsValidPassword())
+            {
+                MessageBox.Show("Пароль должен содержать не менее 6 символов!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            if (password != password2)
+            {
+                MessageBox.Show("Пароли не совпадают!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            Window2 win2 = new Window2();
+            win2.Show();
+            this.Close();
+        }
+
+        // Обновление watermark для текстовых полей
         private void TextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
             UpdateWatermark();

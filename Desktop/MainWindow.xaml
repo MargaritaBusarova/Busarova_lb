@@ -26,7 +26,7 @@
                 </Style>
             </Button.Resources>
         </Button>
-        <Button Margin="370,422,108,138" Background="#FFF96060" BorderBrush="#FFF96060" Foreground="White" Content="Войти" Height="40" FontSize="20">
+        <Button Margin="370,422,108,138" Background="#FFF96060" BorderBrush="#FFF96060" Foreground="White" Content="Войти" Height="40" FontSize="20" Click="Button_Click_1">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="10, 10, 5, 5"/>
