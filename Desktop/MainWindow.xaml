@@ -5,8 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Desktop"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="600" Width="800" MinWidth="800" MinHeight="600">
+    <Grid Height="600" Width="800" Margin="0,0,0,-16">
+        <Image Height="148" Margin="71,62,580,0" VerticalAlignment="Top" Width="149" Source="/images/logo.png"/>
+        <WrapPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Height="544" Width="449" Margin="326,30,0,0"/>
+        <Label Content="Добро пожаловать!" Margin="366,30,152,0" VerticalAlignment="Top" FontSize="30" Width="282" Height="49"/>
+        <Label Content="Почта" Margin="366,177,368,0" VerticalAlignment="Top" FontSize="20" Width="65" Height="36"/>
+        <TextBox x:Name="textBox" VerticalAlignment="Top" FontSize="14" TextChanged="TextBox_TextChanged" Margin="366,218,108,0" Height="30" BorderThickness="0,0,0,1">
+        </TextBox>
+        <TextBlock x:Name="watermark" Text="Введите почту" VerticalAlignment="Top" Foreground="Gray" IsHitTestVisible="False" Margin="368,218,108,0" Height="25"/>
+        <Label Content="Пароль" Margin="366,279,356,0" VerticalAlignment="Top" FontSize="20" Width="78" Height="36"/>
+        <TextBox x:Name="textBox1" VerticalAlignment="Top" FontSize="14" TextChanged="TextBox_TextChanged1" Margin="366,318,108,0" Height="30" BorderThickness="0,0,0,1">
+        </TextBox>
+        <TextBlock x:Name="watermark1" Text="Введите пароль" VerticalAlignment="Top" Foreground="Gray" IsHitTestVisible="False" Margin="368,318,108,0" Height="25"/>
+        <Label Content="Восстановить пароль" Margin="488,359,107,0" VerticalAlignment="Top" FontSize="20" Width="205" Height="36"/>
+        <Button Margin="370,469,108,91" Background="#FFF96060" BorderBrush="#FFF96060" Foreground="White" Content="Регистрация" Height="40" FontSize="20" Click="Button_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5, 5, 10, 10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <Button Margin="370,422,108,138" Background="#FFF96060" BorderBrush="#FFF96060" Foreground="White" Content="Войти" Height="40" FontSize="20">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="10, 10, 5, 5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
 
     </Grid>
 </Window>
