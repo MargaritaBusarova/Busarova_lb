@@ -1,4 +1,5 @@
-﻿using Desktop.utils;
+﻿using Desktop.Repository;
+using Desktop.utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Todo.Entities;
 
 namespace Desktop
 {
@@ -20,6 +22,7 @@ namespace Desktop
     /// </summary>
     public partial class Window1 : Window
     {
+        private UserRepository _userRepository = new UserRepository();
         public Window1()
         {
             InitializeComponent();
@@ -41,7 +44,7 @@ namespace Desktop
             string password = textBox2.Text;
             string password2 = textBox3.Text;
 
-            // Проверяем введенные данные
+            // Валидация полей ввода
             if (!name.IsValidName())
             {
                 MessageBox.Show("Имя должно содержать не менее 3 символов!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -54,7 +57,7 @@ namespace Desktop
                 return;
             }
 
-            if (!password.IsValidPassword())
+            if (!InputValidator.IsValidPassword(password))
             {
                 MessageBox.Show("Пароль должен содержать не менее 6 символов!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
@@ -66,9 +69,32 @@ namespace Desktop
                 return;
             }
 
-            Window2 win2 = new Window2();
-            win2.Show();
-            this.Close();
+            // Создание объекта пользователя для регистрации
+            var newUser = new UserModel
+            {
+                Name = name,
+                Email = email,
+                Password = password
+            };
+
+            // Попытка зарегистрировать пользователя через UserRepository
+            if (InputValidator.IsValidPassword(password) & password == password2 & email.IsValidEmail() & name.IsValidName())
+            {
+                var userRepo = new UserRepository();
+                bool registr = userRepo.Register(textBox.Text, textBox1.Text, textBox2.Text);
+
+                if (registr)
+                {
+                    MessageBox.Show("Регистрация успешна!");
+
+                }
+                if (!registr)
+                {
+                    MessageBox.Show("Email уже занят. Пожалуйста, выберите другой.");
+                }
+
+            }
+
         }
 
         // Обновление watermark для текстовых полей

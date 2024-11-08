@@ -1,4 +1,5 @@
-﻿using Desktop.utils;
+﻿using Desktop.Repository;
+using Desktop.utils;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -46,9 +47,24 @@ namespace Desktop
                 MessageBox.Show("Пароль должен содержать не менее 6 символов!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            Window2 win2 = new Window2();
-            win2.Show();
-            this.Close();
+            if (email.IsValidEmail() && password.IsValidPassword())
+            {
+                var userRepo = new UserRepository();
+                var user = userRepo.GetUser(textBox.Text, textBox1.Text);
+
+                if (user != null)
+                {
+                    MessageBox.Show("Добро пожаловать, " + user.Name + "!");
+                    Window2 win2 = new Window2();
+                    win2.Show();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Неверный email или пароль.");
+                }
+
+            }
         }
 
 

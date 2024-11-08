@@ -14,6 +14,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Todo.Entities\Todo.Entities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="images\avatar2.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
