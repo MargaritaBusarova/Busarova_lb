@@ -10,7 +10,7 @@
         <Image HorizontalAlignment="Left" Height="75" Margin="35,35,0,0" VerticalAlignment="Top" Width="75" Source="/images/avatar2.png" />
         <Label Content="Добро пожаловать!" HorizontalAlignment="Left" Margin="196,124,0,0" VerticalAlignment="Top" FontSize="34"/>
         <Label Content="Создайте свою первую &#xD;&#xA;задачу!" HorizontalAlignment="Left" Margin="196,198,0,0" VerticalAlignment="Top" FontSize="34"/>
-        <Button Margin="338,341,0,219" Background="#FFF96060" BorderBrush="#FFF96060" Foreground="White" Content="Создать первую задачу" Height="40" FontSize="20" HorizontalAlignment="Left" Width="234">
+        <Button Margin="338,341,0,219" Background="#FFF96060" BorderBrush="#FFF96060" Foreground="White" Content="Создать первую задачу" Height="40" FontSize="20" HorizontalAlignment="Left" Width="234" Click="Button_Click">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="5, 5, 5, 5"/>

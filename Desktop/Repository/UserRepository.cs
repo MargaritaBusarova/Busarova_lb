@@ -5,15 +5,22 @@ using System.Text;
 using System.Threading.Tasks;
 using Todo.Entities;
 
+
 namespace Desktop.Repository
 {
     public class UserRepository
     {
-        private static List<UserModel> _users = new List<UserModel>()
-       {
-           new UserModel { Name = "Margarita", Email = "margarita.busarova13@gmail.com", Password = "123456" },
-           new UserModel { Name = "Sigma", Email = "sigma@example.com", Password = "password" }
-       };
+        private static readonly Lazy<UserRepository> _instance = new(() => new UserRepository());
+        public static UserRepository Instance => _instance.Value;
+
+        private static List<UserModel> _users = new List<UserModel>
+        {
+            new UserModel { Name = "Ivan", Email = "Ivan24@mail.ru", Password = "123456" }
+        };
+
+        public UserModel? CurrentUser { get; private set; }
+
+        //private UserRepository() { }
 
         public UserModel? GetUser(string email, string password)
         {
@@ -21,27 +28,32 @@ namespace Desktop.Repository
             {
                 if (user.Email == email && user.Password == password)
                 {
+                    CurrentUser = user;
                     return user;
                 }
             }
             return null;
         }
 
-
-        // Метод для регистрации пользователя
-        public bool Register(string username, string email, string password)
+        public bool Register(string name, string email, string password)
         {
-            // Проверка на уникальность email
             if (_users.Exists(u => u.Email.Equals(email, StringComparison.OrdinalIgnoreCase)))
             {
-                return false; // Email занят
+                return false;
             }
 
-            // Добавление нового пользователя
-            _users.Add(new UserModel { Name = username, Email = email, Password = password });
+            var newUser = new UserModel
+            {
+                Name = name,
+                Email = email,
+                Password = password
+            };
+            _users.Add(newUser);
 
-            return true; // Регистрация успешна
+            CurrentUser = newUser;
+            return true;
         }
-
     }
 }
+
+
